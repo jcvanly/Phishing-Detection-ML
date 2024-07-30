@@ -64,6 +64,20 @@ classifier = Pipeline([("tfidf", TfidfVectorizer()), ("classifier", RandomForest
 # Train the model
 classifier.fit(X_train, y_train)
 
+# Get the number of features from the TfidfVectorizer
+num_features = len(classifier.named_steps['tfidf'].vocabulary_)
+
+print("Number of features:", num_features)
+
+# Predict on the test set
+y_pred = classifier.predict(X_test)
+
+# Evaluate the model
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
+print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
+print("Classification Report:\n", classification_report(y_test, y_pred))
+
 # Predict on the test set
 y_pred = classifier.predict(X_test)
 
