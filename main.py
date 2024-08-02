@@ -7,6 +7,11 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import classification_report, accuracy_score, confusion_matrix
 from sklearn.naive_bayes import MultinomialNB
+import os
+
+# Create a directory to save the plots
+output_dir = 'plots'
+os.makedirs(output_dir, exist_ok=True)
 
 # Import the Dataset
 df = pd.read_csv("Phishing_Email.csv")
@@ -38,6 +43,7 @@ plt.ylabel('Count')
 plt.title('Distribution of Email Types with Custom Colors')
 plt.xticks(rotation=45)
 plt.tight_layout()
+plt.savefig(os.path.join(output_dir, 'email_type_distribution.png'))
 plt.show()
 
 # Undersampling technique 
@@ -104,6 +110,7 @@ accuracies = [rf_accuracy, nb_accuracy]
 ax.bar(labels, accuracies, color=['blue', 'orange'])
 ax.set_ylabel('Accuracy')
 ax.set_title('Model Accuracy Comparison')
+plt.savefig(os.path.join(output_dir, 'model_accuracy_comparison.png'))
 plt.show()
 
 # Plot confusion matrices
@@ -126,6 +133,7 @@ axes[1].set_title('Naive Bayes Confusion Matrix')
 axes[1].set_xlabel('Predicted labels')
 axes[1].set_ylabel('True labels')
 
+plt.savefig(os.path.join(output_dir, 'confusion_matrices.png'))
 plt.show()
 
 # Plot classification reports
@@ -154,6 +162,7 @@ ax.set_xticklabels(labels)
 ax.legend()
 
 fig.tight_layout()
+plt.savefig(os.path.join(output_dir, 'precision_comparison.png'))
 plt.show()
 
 fig, ax = plt.subplots(figsize=(12, 8))
@@ -168,6 +177,7 @@ ax.set_xticklabels(labels)
 ax.legend()
 
 fig.tight_layout()
+plt.savefig(os.path.join(output_dir, 'recall_comparison.png'))
 plt.show()
 
 fig, ax = plt.subplots(figsize=(12, 8))
@@ -182,4 +192,5 @@ ax.set_xticklabels(labels)
 ax.legend()
 
 fig.tight_layout()
+plt.savefig(os.path.join(output_dir, 'f1score_comparison.png'))
 plt.show()
