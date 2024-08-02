@@ -76,18 +76,6 @@ print("Random Forest Model Accuracy:", accuracy_score(y_test, rf_y_pred))
 print("Random Forest Confusion Matrix:\n", confusion_matrix(y_test, rf_y_pred))
 print("Random Forest Classification Report:\n", classification_report(y_test, rf_y_pred))
 
-# Define the SVM Classifier
-svm_classifier = Pipeline([("tfidf", TfidfVectorizer()), ("SVM", SVC(C=100, gamma="auto"))])
-
-# Train the SVM model
-svm_classifier.fit(X_train, y_train)
-
-# Prediction for SVM model
-svm_y_pred = svm_classifier.predict(x_test)
-
-# Print SVM model accuracy
-print("SVM Model Accuracy:", accuracy_score(y_test, svm_y_pred))
-
 # Define the Naive Bayes Classifier
 nb_classifier = Pipeline([("tfidf", TfidfVectorizer()), ("nb", MultinomialNB())])
 
