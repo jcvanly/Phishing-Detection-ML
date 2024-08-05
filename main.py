@@ -33,22 +33,6 @@ print(df.shape)
 email_type_counts = df['Email Type'].value_counts()
 print(email_type_counts)
 
-# Create a bar chart to visualize the distribution of email types
-unique_email_types = email_type_counts.index.tolist()
-color_map = {'Phishing Email': 'red', 'Safe Email': 'green'}
-colors = [color_map.get(email_type, 'gray') for email_type in unique_email_types]
-
-plt.figure(figsize=(8, 6))
-plt.bar(unique_email_types, email_type_counts, color=colors)
-plt.xlabel('Email Type')
-plt.ylabel('Count')
-plt.title('Distribution of Email Types with Custom Colors')
-plt.xticks(rotation=45)
-plt.tight_layout()
-# Save the bar chart to a file
-plt.savefig(os.path.join(output_dir, 'email_type_distribution.png'))
-plt.show()
-
 # Apply undersampling to balance the dataset by sampling the same number of Safe Emails as Phishing Emails
 Safe_Email = df[df["Email Type"] == "Safe Email"]
 Phishing_Email = df[df["Email Type"] == "Phishing Email"]
